@@ -1,0 +1,15 @@
+name: verificar
+on: [push, pull_request]
+jobs:
+  provas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install numpy stim pymatching
+      - run: python3 -I decoerencia.py autoteste
+      - run: python3 -I tpl_sincronia.py
+      - run: python3 -I tpl_correcao.py
+      - run: python3 -I tpl_superficie.py
